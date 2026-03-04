@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscrição • Instituto Irmãos Nogueira (Projeto Light)</title>
+
+  <meta name="description" content="Formulário de inscrição do Projeto Luta: Escola da Vida (Light) - Instituto Irmãos Nogueira." />
+
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --panel:#111522;
+      --panel2:#0f1320;
+      --text:#e9ecf2;
+      --muted:#aab2c5;
+      --border:rgba(255,255,255,.10);
+      --primary:#8f1422;
+      --primary2:#b31d2f;
+      --ok:#1f8a57;
+      --warn:#d28a00;
+      --danger:#ff4d4d;
+      --shadow: 0 14px 40px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(1200px 600px at 15% 10%, rgba(179,29,47,.25), transparent 60%),
+        radial-gradient(900px 500px at 85% 15%, rgba(31,138,87,.18), transparent 60%),
+        linear-gradient(180deg, #0a0c12, #0b0d12);
+      color:var(--text);
+      min-height:100vh;
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .top{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .logo{
+      width:56px; height:56px;
+      border-radius:14px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
+    }
+    .logo img{width:100%; height:100%; object-fit:cover}
+
+    .brand h1{
+      margin:0;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .brand p{
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 13px;
+      white-space:nowrap;
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero{
+      padding: 18px 18px 8px;
+      border-bottom: 1px solid var(--border);
+      background:
+        radial-gradient(800px 260px at 50% 0%, rgba(143,20,34,.25), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+    }
+
+    .hero h2{
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+    .hero .sub{
+      margin:0 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .notice{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(31, 63, 143, .14);
+      border: 1px solid rgba(31, 63, 143, .35);
+      color: #dbe3ff;
+      margin: 10px 18px 18px;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .notice strong{color:#fff}
+
+    form{ padding: 0 18px 18px; }
+
+    .section{
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed rgba(255,255,255,.14);
+    }
+
+    .section h3{
+      margin: 0 0 10px;
+      font-size: 15px;
+      letter-spacing:.2px;
+    }
+    .section p.hint{
+      margin: -4px 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 10px;
+    }
+
+    .field{
+      grid-column: span 12;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .col-6{grid-column: span 6}
+    .col-4{grid-column: span 4}
+    .col-3{grid-column: span 3}
+    .col-2{grid-column: span 2}
+    .col-8{grid-column: span 8}
+
+    label{
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    input, select, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(10,12,18,.55);
+      color: var(--text);
+      outline: none;
+      transition: .15s;
+      font-size: 14px;
+    }
+
+    textarea{min-height: 92px; resize: vertical}
+
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(179,29,47,.55);
+      box-shadow: 0 0 0 4px rgba(179,29,47,.18);
+    }
+
+    .check-group{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding: 6px 0 2px;
+    }
+
+    .chip{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      cursor:pointer;
+      user-select:none;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .chip input{width:auto}
+
+    /* ✅ bloco de perguntas (PAR-Q / Anamnese) */
+    .q-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 6px;
+    }
+    .q-item{
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      padding: 12px 12px;
+    }
+    .q-head{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+    .q-text{
+      font-size: 13px;
+      color: var(--text);
+      line-height: 1.35;
+      flex: 1;
+      min-width: 220px;
+    }
+    .q-opts{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:flex-end;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(10,12,18,.35);
+      font-size: 13px;
+      color: var(--text);
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .pill input{width:auto}
+
+    .actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content:space-between;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn{
+      border: 0;
+      cursor:pointer;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 14px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: .15s;
+    }
+
+    .btn-primary{
+      background: linear-gradient(180deg, var(--primary2), var(--primary));
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(179,29,47,.26);
+    }
+    .btn-primary:hover{transform: translateY(-1px)}
+
+    .btn-ghost{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      color: var(--text);
+    }
+
+    .small{
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .toast{
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(17,21,34,.92);
+      color: var(--text);
+      box-shadow: var(--shadow);
+      display:none;
+      max-width: min(720px, calc(100% - 24px));
+      z-index: 9999;
+    }
+    .toast.show{display:block}
+    .toast.ok{border-color: rgba(31,138,87,.5)}
+    .toast.warn{border-color: rgba(210,138,0,.55)}
+    .toast.bad{border-color: rgba(255,77,77,.5)}
+
+    @media (max-width: 820px){
+      .col-6,.col-4,.col-3,.col-2,.col-8{grid-column: span 12}
+      .badge{width:100%; justify-content:center}
+      .top{gap:10px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <img src="logo.png" alt="Logo Instituto Irmãos Nogueira" onerror="this.remove()">
+        </div>
+        <div>
+          <h1>Instituto Irmãos Nogueira</h1>
+          <p>Projeto Luta: Escola da Vida (Light)</p>
+        </div>
+      </div>
+
+      <div class="badge" title="Preencha com atenção.">
+        ✅ Inscrição Online • Preenchimento pelo responsável
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="hero">
+        <h2>Ficha de Inscrição</h2>
+        <p class="sub">
+          Preencha os dados abaixo para entrar na <strong>fila de espera</strong>.
+          Após o envio, nossa equipe entrará em contato para <strong>confirmar o interesse</strong> e informar a <strong>data de início das aulas</strong>.
+        </p>
+      </div>
+
+      <div class="notice">
+        <div>ℹ️</div>
+        <div>
+          <strong>Importante:</strong> use um número de WhatsApp válido do responsável para receber a confirmação.
+          Se não tiver algum documento no momento, preencha com “não possui” ou deixe em branco quando não for obrigatório.
+        </div>
+      </div>
+
+      <form id="inscricaoForm" novalidate>
+
+        <!-- SEÇÃO 1 -->
+        <div class="section">
+          <h3>1) Informações do(a) aluno(a)</h3>
+          <p class="hint">Campos com * são obrigatórios.</p>
+
+          <div class="grid">
+            <div class="field col-8">
+              <label for="aluno_nome">Nome completo do(a) aluno(a) *</label>
+              <input id="aluno_nome" name="aluno_nome" type="text" required placeholder="Ex: Maria Eduarda Silva" />
+            </div>
+
+            <div class="field col-4">
+              <label for="aluno_nascimento">Data de nascimento *</label>
+              <input id="aluno_nascimento" name="aluno_nascimento" type="date" required />
+            </div>
+
+            <div class="field col-4">
+              <label for="aluno_genero">Gênero</label>
+              <select id="aluno_genero" name="aluno_genero">
+                <option value="">Selecione</option>
+                <option>Masculino</option>
+                <option>Feminino</option>
+                <option>Outro</option>
+                <option>Prefiro não informar</option>
+              </select>
+            </div>
+
+            <div class="field col-4">
+              <label for="aluno_rg">RG</label>
+              <input id="aluno_rg" name="aluno_rg" type="text" placeholder="Somente números (se tiver)" />
+            </div>
+
+            <div class="field col-4">
+              <label for="aluno_cpf">CPF</label>
+              <input id="aluno_cpf" name="aluno_cpf" type="text" placeholder="Somente números (se tiver)" />
+            </div>
+
+            <div class="field col-6">
+              <label for="orgao_emissor">Órgão emissor</label>
+              <input id="orgao_emissor" name="orgao_emissor" type="text" placeholder="Ex: SSP" />
+            </div>
+
+            <div class="field col-6">
+              <label for="uf_emissor">UF</label>
+              <input id="uf_emissor" name="uf_emissor" type="text" maxlength="2" placeholder="Ex: RJ" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 2 -->
+        <div class="section">
+          <h3>2) Endereço e contato do(a) aluno(a)</h3>
+
+          <div class="grid">
+            <div class="field col-8">
+              <label for="endereco">Endereço *</label>
+              <input id="endereco" name="endereco" type="text" required placeholder="Rua / Av. / Logradouro" />
+            </div>
+
+            <div class="field col-4">
+              <label for="numero">Número *</label>
+              <input id="numero" name="numero" type="text" required placeholder="Ex: 120" />
+            </div>
+
+            <div class="field col-6">
+              <label for="complemento">Complemento</label>
+              <input id="complemento" name="complemento" type="text" placeholder="Casa / Apto / Bloco" />
+            </div>
+
+            <div class="field col-6">
+              <label for="bairro">Bairro *</label>
+              <input id="bairro" name="bairro" type="text" required placeholder="Ex: Centro" />
+            </div>
+
+            <div class="field col-4">
+              <label for="cep">CEP</label>
+              <input id="cep" name="cep" type="text" placeholder="Ex: 00000-000" />
+            </div>
+
+            <div class="field col-8">
+              <label for="aluno_tel">Telefone (se tiver)</label>
+              <input id="aluno_tel" name="aluno_tel" type="tel" placeholder="(DDD) 9XXXX-XXXX" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 3 -->
+        <div class="section">
+          <h3>3) Filiação</h3>
+
+          <div class="grid">
+            <div class="field col-6">
+              <label for="mae_nome">Nome da mãe *</label>
+              <input id="mae_nome" name="mae_nome" type="text" required />
+            </div>
+
+            <div class="field col-6">
+              <label for="pai_nome">Nome do pai</label>
+              <input id="pai_nome" name="pai_nome" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 4 -->
+        <div class="section">
+          <h3>4) Escola</h3>
+
+          <div class="grid">
+            <div class="field col-4">
+              <label for="estudando">Está estudando? *</label>
+              <select id="estudando" name="estudando" required>
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+              </select>
+            </div>
+
+            <div class="field col-8">
+              <label for="rede_ensino">Rede de ensino</label>
+              <select id="rede_ensino" name="rede_ensino">
+                <option value="">Selecione</option>
+                <option>Municipal</option>
+                <option>Estadual</option>
+                <option>Federal</option>
+                <option>Particular</option>
+              </select>
+            </div>
+
+            <div class="field col-8">
+              <label for="escola">Nome da escola</label>
+              <input id="escola" name="escola" type="text" />
+            </div>
+
+            <div class="field col-2">
+              <label for="ano">Ano</label>
+              <input id="ano" name="ano" type="text" placeholder="Ex: 7º" />
+            </div>
+
+            <div class="field col-2">
+              <label for="turma">Turma</label>
+              <input id="turma" name="turma" type="text" placeholder="Ex: B" />
+            </div>
+
+            <div class="field col-12">
+              <label for="turno">Turno</label>
+              <select id="turno" name="turno">
+                <option value="">Selecione</option>
+                <option>Manhã</option>
+                <option>Tarde</option>
+                <option>Noite</option>
+                <option>Integral</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 5 -->
+        <div class="section">
+          <h3>5) Informações do projeto</h3>
+          <p class="hint">Escolha o núcleo e a modalidade. Se não souber dias/horário, deixe em branco.</p>
+
+          <div class="grid">
+            <div class="field col-6">
+              <label for="nucleo">Núcleo *</label>
+              <select id="nucleo" name="nucleo" required>
+                <option value="">Selecione</option>
+                <option>Núcleo Centro</option>
+                <option>Núcleo Norte</option>
+                <option>Núcleo Sul</option>
+                <option>Núcleo Oeste</option>
+                <option>Outro</option>
+              </select>
+            </div>
+
+            <div class="field col-6">
+              <label for="modalidade">Modalidade *</label>
+              <select id="modalidade" name="modalidade" required>
+                <option value="">Selecione</option>
+                <option>Jiu-Jitsu</option>
+                <option>Muay Thai</option>
+                <option>Boxe</option>
+                <option>Outras</option>
+              </select>
+            </div>
+
+            <div class="field col-8">
+              <label>Dias da semana</label>
+              <div class="check-group" role="group" aria-label="Dias da semana">
+                <label class="chip"><input type="checkbox" name="dias" value="Segunda"> Segunda</label>
+                <label class="chip"><input type="checkbox" name="dias" value="Terça"> Terça</label>
+                <label class="chip"><input type="checkbox" name="dias" value="Quarta"> Quarta</label>
+                <label class="chip"><input type="checkbox" name="dias" value="Quinta"> Quinta</label>
+                <label class="chip"><input type="checkbox" name="dias" value="Sexta"> Sexta</label>
+                <label class="chip"><input type="checkbox" name="dias" value="Sábado"> Sábado</label>
+              </div>
+            </div>
+
+            <div class="field col-4">
+              <label for="horario">Horário</label>
+              <input id="horario" name="horario" type="text" placeholder="Ex: 18:00" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 6 -->
+        <div class="section">
+          <h3>6) Dados do responsável</h3>
+          <p class="hint">O WhatsApp do responsável é obrigatório (para confirmação de interesse).</p>
+
+          <div class="grid">
+            <div class="field col-8">
+              <label for="resp_nome">Nome completo do responsável *</label>
+              <input id="resp_nome" name="resp_nome" type="text" required />
+            </div>
+
+            <div class="field col-4">
+              <label for="resp_whatsapp">WhatsApp do responsável *</label>
+              <input id="resp_whatsapp" name="resp_whatsapp" type="tel" required placeholder="DDD + número (Ex: 21999999999)" />
+            </div>
+
+            <div class="field col-6">
+              <label for="resp_rg">RG do responsável</label>
+              <input id="resp_rg" name="resp_rg" type="text" />
+            </div>
+
+            <div class="field col-6">
+              <label for="resp_cpf">CPF do responsável</label>
+              <input id="resp_cpf" name="resp_cpf" type="text" />
+            </div>
+
+            <div class="field col-12">
+              <label for="resp_email">E-mail</label>
+              <input id="resp_email" name="resp_email" type="email" placeholder="exemplo@email.com" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 7 -->
+        <div class="section">
+          <h3>7) Motivo da inscrição</h3>
+
+          <div class="grid">
+            <div class="field col-12">
+              <label>Selecione um ou mais motivos</label>
+              <div class="check-group">
+                <label class="chip"><input type="checkbox" name="motivo" value="Fazer novos amigos"> Fazer novos amigos</label>
+                <label class="chip"><input type="checkbox" name="motivo" value="Melhorar a saúde"> Melhorar a saúde</label>
+                <label class="chip"><input type="checkbox" name="motivo" value="Ser atleta no futuro"> Ser atleta no futuro</label>
+                <label class="chip"><input type="checkbox" name="motivo" value="Melhorar o comportamento"> Melhorar o comportamento</label>
+                <label class="chip"><input type="checkbox" name="motivo" value="Ocupar o tempo ocioso"> Ocupar o tempo ocioso</label>
+                <label class="chip"><input type="checkbox" name="motivo" value="Outros"> Outros</label>
+              </div>
+            </div>
+
+            <div class="field col-12">
+              <label for="motivo_outros">Se marcou “Outros”, descreva:</label>
+              <textarea id="motivo_outros" name="motivo_outros" placeholder="Escreva aqui (opcional)"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO 8 -->
+        <div class="section">
+          <h3>8) Informações sociais (opcional)</h3>
+
+          <div class="grid">
+            <div class="field col-6">
+              <label for="mora_com">Mora com</label>
+              <select id="mora_com" name="mora_com">
+                <option value="">Selecione</option>
+                <option>Pai</option>
+                <option>Mãe</option>
+                <option>Pai e Mãe</option>
+                <option>Avós</option>
+                <option>Outros</option>
+              </select>
+            </div>
+
+            <div class="field col-6">
+              <label for="pessoas_casa">Número de pessoas na casa</label>
+              <input id="pessoas_casa" name="pessoas_casa" type="number" min="1" step="1" placeholder="Ex: 4" />
+            </div>
+
+            <div class="field col-6">
+              <label for="bolsa_auxilio">Recebe bolsa auxílio?</label>
+              <select id="bolsa_auxilio" name="bolsa_auxilio">
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+              </select>
+            </div>
+
+            <div class="field col-6">
+              <label for="bolsa_qual">Se sim, qual?</label>
+              <input id="bolsa_qual" name="bolsa_qual" type="text" placeholder="Ex: Bolsa Família" />
+            </div>
+
+            <div class="field col-6">
+              <label for="outro_projeto_luta">Já participou de outro projeto de lutas?</label>
+              <select id="outro_projeto_luta" name="outro_projeto_luta">
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+              </select>
+            </div>
+
+            <div class="field col-6">
+              <label for="qual_projeto_luta">Se sim, qual?</label>
+              <input id="qual_projeto_luta" name="qual_projeto_luta" type="text" />
+            </div>
+
+            <div class="field col-6">
+              <label for="outro_projeto_social">Já participou de outro projeto social?</label>
+              <select id="outro_projeto_social" name="outro_projeto_social">
+                <option value="">Selecione</option>
+                <option>Sim</option>
+                <option>Não</option>
+              </select>
+            </div>
+
+            <div class="field col-6">
+              <label for="qual_projeto_social">Se sim, qual atividade?</label>
+              <input id="qual_projeto_social" name="qual_projeto_social" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ✅ SEÇÃO 9 (NOVA) -->
+        <div class="section">
+          <h3>9) Questionário de prontidão para atividade física (PAR-Q)</h3>
+          <p class="hint">Responda <strong>Sim</strong> ou <strong>Não</strong> para cada pergunta (recomendado).</p>
+
+          <div class="q-list">
+            <div class="q-item">
+              <div class="q-head">
+                <div class="q-text">1) Algum médico já disse que você possui problema cardíaco e precisa de supervisão para se exercitar?</div>
+                <div class="q-opts">
+                  <label class="pill"><input type="radio" name="parq_q1" value="sim"> Sim</label>
+                  <label class="pill"><input type="radio" name="parq_q1" value="nao"> Não</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="q-item">
+              <div class="q-head">
+                <div class="q-text">2) Você sente dores no peito quando pratica atividade física?</div>
+                <div class="q-opts">
+                  <label class="pill"><input type="radio" name="parq_q2" value="sim"> Sim</label>
+                  <label class="pill"><input type="radio" name="parq_q2" value="nao"> Não</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="q-item">
+              <div class="q-head">
+                <div class="q-text">3) No último mês, você sentiu dores no peito enquanto praticava atividade física?</div>
+                <div class="q-opts">
+                  <label class="pill"><input type="radio" name="parq_q3" value="sim"> Sim</label>
+                  <label class="pill"><input type="radio" name="parq_q3" value="nao"> Não</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="q-item">
+              <div class="q-head">
+                <div class="q-text">4) Você apresenta desequilíbrio devido a tontura e/ou perda de consciência?</div>
+                <div class="q-opts">
+                  <label class="pill"><input type="radio" name="parq_q4" value="sim"> Sim</label>
+                  <label class="pill"><input type="radio" name="parq_q4" value="nao"> Não</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="q-item">
+              <div class="q-head">
+                <div class="q-text">5) Você apresenta algum problema ósseo ou articular que poderia ser piorado pela atividade física?</div>
+                <div class="q-opts">
+                  <label class="pill"><input type="radio" name="parq_q5" value="sim"> Sim</label>
+                  <label class="pill"><input type="radio" name="parq_q5" value="nao"> Não</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="q-item">
+              <div class="q-head">
+                <div class="q-text">6) Você toma atualmente algum medicamento para pressão arterial e/ou problema de coração?</div>
+                <div class="q-opts">
+                  <label class="pill"><input type="radio" name="parq_q6" value="sim"> Sim</label>
+                  <label class="pill"><input type="radio" name="parq_q6" value="nao"> Não</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="q-item">
+              <div class="q-head">
+                <div class="q-text">7) Sabe de alguma outra razão pela qual você não deve praticar atividade física?</div>
+                <div class="q-opts">
+                  <label class="pill"><input type="radio" name="parq_q7" value="sim"> Sim</label>
+                  <label class="pill"><input type="radio" name="parq_q7" value="nao"> Não</label>
+                </div>
+              </div>
+              <div style="margin-top:10px">
+                <label for="parq_q7_motivo" style="display:block;margin-bottom:6px;color:var(--muted);font-size:12px;">Se marcou SIM na pergunta 7, qual razão?</label>
+                <input id="parq_q7_motivo" name="parq_q7_motivo" type="text" placeholder="Descreva (opcional)" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ✅ SEÇÃO 10 (NOVA) -->
+        <div class="section">
+          <h3>10) Anamnese do(a) aluno(a)</h3>
+          <p class="hint">Preencha o que souber (recomendado para segurança nas aulas).</p>
+
+          <div class="grid">
+            <div class="field col-3">
+              <label for="anamnese_peso">Peso</label>
+              <input id="anamnese_peso" name="anamnese_peso" type="text" placeholder="Ex: 42 kg" />
+            </div>
+            <div class="field col-3">
+              <label for="anamnese_altura">Altura</label>
+              <input id="anamnese_altura" name="anamnese_altura" type="text" placeholder="Ex: 1,52 m" />
+            </div>
+            <div class="field col-6">
+              <label for="anamnese_tipo_sanguineo">Tipo sanguíneo</label>
+              <input id="anamnese_tipo_sanguineo" name="anamnese_tipo_sanguineo" type="text" placeholder="Ex: O+" />
+            </div>
+
+            <div class="field col-6">
+              <label>Tem alguma doença ou lesão?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_doenca_lesao" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_doenca_lesao" value="sim"> Sim</label>
+              </div>
+            </div>
+            <div class="field col-6">
+              <label for="anamnese_doenca_lesao_quais">Se sim, qual(is)?</label>
+              <input id="anamnese_doenca_lesao_quais" name="anamnese_doenca_lesao_quais" type="text" placeholder="Descreva (opcional)" />
+            </div>
+
+            <div class="field col-6">
+              <label>Tem prótese?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_protese" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_protese" value="sim"> Sim</label>
+              </div>
+            </div>
+            <div class="field col-6">
+              <label for="anamnese_protese_quais">Se sim, qual(is)?</label>
+              <input id="anamnese_protese_quais" name="anamnese_protese_quais" type="text" placeholder="Descreva (opcional)" />
+            </div>
+
+            <div class="field col-6">
+              <label>Usa medicamento?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_medicamento" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_medicamento" value="sim"> Sim</label>
+              </div>
+            </div>
+            <div class="field col-6">
+              <label for="anamnese_medicamento_quais">Se sim, qual(is)?</label>
+              <input id="anamnese_medicamento_quais" name="anamnese_medicamento_quais" type="text" placeholder="Descreva (opcional)" />
+            </div>
+
+            <div class="field col-12">
+              <label for="anamnese_motivo_uso">Motivo do uso</label>
+              <input id="anamnese_motivo_uso" name="anamnese_motivo_uso" type="text" placeholder="Opcional" />
+            </div>
+
+            <div class="field col-6">
+              <label>Tem alguma alergia?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_alergia" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_alergia" value="sim"> Sim</label>
+              </div>
+            </div>
+            <div class="field col-6">
+              <label for="anamnese_alergia_quais">Se sim, qual(is)?</label>
+              <input id="anamnese_alergia_quais" name="anamnese_alergia_quais" type="text" placeholder="Descreva (opcional)" />
+            </div>
+
+            <div class="field col-6">
+              <label>Fez alguma cirurgia?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_cirurgia" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_cirurgia" value="sim"> Sim</label>
+              </div>
+            </div>
+            <div class="field col-6">
+              <label for="anamnese_cirurgia_quais">Se sim, qual(is)?</label>
+              <input id="anamnese_cirurgia_quais" name="anamnese_cirurgia_quais" type="text" placeholder="Descreva (opcional)" />
+            </div>
+
+            <div class="field col-6">
+              <label>Fuma?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_fuma" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_fuma" value="sim"> Sim</label>
+              </div>
+            </div>
+
+            <div class="field col-6">
+              <label>Faz uso de bebida alcoólica?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_alcool" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_alcool" value="sim"> Sim</label>
+              </div>
+            </div>
+
+            <div class="field col-6">
+              <label>Tem diabetes?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_diabetes" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_diabetes" value="sim"> Sim</label>
+              </div>
+            </div>
+            <div class="field col-6">
+              <label for="anamnese_diabetes_tipo">Se sim, qual tipo?</label>
+              <select id="anamnese_diabetes_tipo" name="anamnese_diabetes_tipo">
+                <option value="">Selecione</option>
+                <option>Tipo 1</option>
+                <option>Tipo 2</option>
+              </select>
+            </div>
+
+            <div class="field col-6">
+              <label>Possui alguma deficiência?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_deficiencia" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_deficiencia" value="sim"> Sim</label>
+              </div>
+            </div>
+            <div class="field col-6">
+              <label for="anamnese_deficiencia_quais">Se sim, qual(is)?</label>
+              <input id="anamnese_deficiencia_quais" name="anamnese_deficiencia_quais" type="text" placeholder="Descreva (opcional)" />
+            </div>
+
+            <div class="field col-6">
+              <label>Está imunizado contra a Covid-19?</label>
+              <div class="check-group">
+                <label class="chip"><input type="radio" name="anamnese_covid" value="nao"> Não</label>
+                <label class="chip"><input type="radio" name="anamnese_covid" value="sim"> Sim</label>
+              </div>
+            </div>
+            <div class="field col-6">
+              <label for="anamnese_covid_doses">Quantas doses?</label>
+              <input id="anamnese_covid_doses" name="anamnese_covid_doses" type="number" min="0" step="1" placeholder="Ex: 2" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ✅ SEÇÃO 11 (NOVA) -->
+        <div class="section">
+          <h3>11) Autorização para uso de imagem e voz</h3>
+          <p class="hint">Preencha os dados do(a) responsável que autoriza. (Recomendado.)</p>
+
+          <div class="grid">
+            <div class="field col-8">
+              <label for="aut_nome">Nome completo (responsável / declarante)</label>
+              <input id="aut_nome" name="aut_nome" type="text" placeholder="Nome completo" />
+            </div>
+
+            <div class="field col-4">
+              <label for="aut_rg">RG</label>
+              <input id="aut_rg" name="aut_rg" type="text" placeholder="RG" />
+            </div>
+
+            <div class="field col-4">
+              <label for="aut_cpf">CPF</label>
+              <input id="aut_cpf" name="aut_cpf" type="text" placeholder="CPF" />
+            </div>
+
+            <div class="field col-4">
+              <label for="aut_local">Local</label>
+              <input id="aut_local" name="aut_local" type="text" placeholder="Ex: Rio de Janeiro" />
+            </div>
+
+            <div class="field col-4">
+              <label for="aut_data">Data</label>
+              <input id="aut_data" name="aut_data" type="date" />
+            </div>
+
+            <div class="field col-12">
+              <label for="aut_texto">Declaração</label>
+              <textarea id="aut_texto" name="aut_texto" rows="4">AUTORIZO, nos termos do Código Civil, Capítulo II, Art. 20, o uso da imagem e da voz do(a) aluno(a) identificado(a) na ficha de inscrição pelo Instituto Irmãos Nogueira, em fotos, vídeos, gravações de áudio e demais registros, para campanhas institucionais, peças de divulgação, relatórios, redes sociais, mídias digitais e impressas, bem como em atividades internas do projeto, desde que preservada a finalidade socioeducativa. Declaro estar ciente de que esta autorização é gratuita, por prazo indeterminado, e não gera vínculo empregatício nem qualquer obrigação de remuneração por parte da instituição.</textarea>
+            </div>
+
+            <div class="field col-6">
+              <label for="aut_assinatura_nome">Assinatura (nome completo)</label>
+              <input id="aut_assinatura_nome" name="aut_assinatura_nome" type="text" placeholder="Digite o nome completo" />
+            </div>
+
+            <div class="field col-6">
+              <label for="aut_colaborador">Colaborador</label>
+              <input id="aut_colaborador" name="aut_colaborador" type="text" placeholder="Preenchido pela equipe (opcional)" />
+            </div>
+
+            <div class="field col-12">
+              <label for="aut_observacao">Observação</label>
+              <input id="aut_observacao" name="aut_observacao" type="text" placeholder="Opcional" />
+            </div>
+
+            <div class="field col-12">
+              <div class="check-group">
+                <label class="chip">
+                  <input type="checkbox" id="aceite_imagem" name="aceite_imagem" required>
+                  Autorizo o uso de imagem e voz do(a) aluno(a) para fins institucionais. *
+                </label>
+                <label class="chip">
+                  <input type="checkbox" id="aceite_verdade" name="aceite_verdade" required>
+                  Declaro que as informações fornecidas são verdadeiras. *
+                </label>
+              </div>
+
+              <div class="small">
+                Ao enviar, sua inscrição entra na <strong>fila de espera</strong>. A confirmação final será feita via WhatsApp.
+              </div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-ghost" type="reset">Limpar</button>
+            <button class="btn btn-primary" type="submit">📩 Enviar inscrição</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <p class="small" style="margin-top:12px; text-align:center;">
+      © Instituto Irmãos Nogueira • Projeto Light
+    </p>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // Mantemos essas funções porque ajudam na validação e o inscricao.js pode reutilizar o DOM (#toast)
+    function showToast(msg, kind="ok"){
+      const t = document.getElementById("toast");
+      t.className = "toast show " + (kind || "ok");
+      t.textContent = msg;
+      setTimeout(()=> t.classList.remove("show"), 4200);
+    }
+
+    function formToObject(form){
+      const fd = new FormData(form);
+      const obj = {};
+
+      for (const [k, v] of fd.entries()){
+        if (obj[k] !== undefined){
+          if (!Array.isArray(obj[k])) obj[k] = [obj[k]];
+          obj[k].push(v);
+        } else {
+          obj[k] = v;
+        }
+      }
+
+      // arrays (checkbox múltiplo)
+      if (!obj.dias) obj.dias = [];
+      if (!Array.isArray(obj.dias)) obj.dias = [obj.dias];
+
+      if (!obj.motivo) obj.motivo = [];
+      if (!Array.isArray(obj.motivo)) obj.motivo = [obj.motivo];
+
+      // metas padrão para o painel
+      obj.created_at = new Date().toISOString();
+      obj.status = "novo";
+      obj.ultimo_contato_em = "";
+      obj.observacao = obj.observacao || "";
+
+      // normalizações
+      if (obj.resp_whatsapp) obj.resp_whatsapp = String(obj.resp_whatsapp).replace(/\D/g, "");
+      if (obj.cep) obj.cep = String(obj.cep).replace(/\D/g, "");
+
+      return obj;
+    }
+
+    function validate(form){
+      if (!form.checkValidity()){
+        form.reportValidity();
+        return false;
+      }
+      const w = document.getElementById("resp_whatsapp").value.replace(/\D/g,"");
+      if (w.length < 10){
+        showToast("Digite um WhatsApp válido do responsável (com DDD).", "warn");
+        document.getElementById("resp_whatsapp").focus();
+        return false;
+      }
+      return true;
+    }
+
+    /* ✅ SUBMIT DO HTML DESATIVADO
+       (quem envia é o inscricao.js)
+    document.getElementById("inscricaoForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      if (!validate(form)) return;
+      const payload = formToObject(form);
+      console.log(payload);
+      showToast("Inscrição enviada com sucesso! ✅", "ok");
+      form.reset();
+    });
+    */
+  </script>
+
+  <!-- ✅ Envio real para a planilha/API -->
+  <script src="inscricao.js"></script>
+</body>
+</html>
