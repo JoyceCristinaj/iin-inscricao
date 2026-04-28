@@ -445,21 +445,43 @@ function formToObject(form) {
     }
   }
 
-  if (!obj.motivo) obj.motivo = [];
-  if (!Array.isArray(obj.motivo)) obj.motivo = [obj.motivo];
-  obj.motivo = obj.motivo.filter(Boolean).join(", ");
+  const get = (id) => document.getElementById(id)?.value?.trim() || "";
+
+  obj.aluno_nome = obj.aluno_nome || get("aluno_nome");
+  obj.aluno_nascimento = obj.aluno_nascimento || get("aluno_nascimento");
+  obj.aluno_genero = obj.aluno_genero || get("aluno_genero");
+  obj.aluno_rg = obj.aluno_rg || get("aluno_rg");
+  obj.aluno_cpf = (obj.aluno_cpf || get("aluno_cpf")).replace(/\D/g, "");
+
+  obj.endereco = obj.endereco || get("endereco");
+  obj.numero = obj.numero || get("numero");
+  obj.complemento = obj.complemento || get("complemento");
+  obj.bairro = obj.bairro || get("bairro");
+  obj.cep = (obj.cep || get("cep")).replace(/\D/g, "");
+
+  obj.resp_nome = obj.resp_nome || get("resp_nome");
+  obj.resp_whatsapp = (obj.resp_whatsapp || get("resp_whatsapp")).replace(/\D/g, "");
+  obj.resp_email = obj.resp_email || get("resp_email");
+
+  obj.nucleo = obj.nucleo || get("nucleo");
+  obj.modalidade = obj.modalidade || get("modalidade");
+  obj.dia = obj.dia || get("dia");
+  obj.horario = obj.horario || get("horario");
+
+  obj.motivo = Array.isArray(obj.motivo)
+    ? obj.motivo.filter(Boolean).join(", ")
+    : (obj.motivo || "");
 
   obj.aceite_imagem = fd.get("aceite_imagem") ? "sim" : "nao";
   obj.aceite_verdade = fd.get("aceite_verdade") ? "sim" : "nao";
 
   obj.created_at = new Date().toISOString();
   obj.status = "novo";
+  obj.source = "site";
   obj.ultimo_contato_em = obj.ultimo_contato_em || "";
   obj.observacao = obj.observacao || "";
 
-  if (obj.resp_whatsapp) obj.resp_whatsapp = String(obj.resp_whatsapp).replace(/\D/g, "");
-  if (obj.cep) obj.cep = String(obj.cep).replace(/\D/g, "");
-  if (obj.uf_emissor) obj.uf_emissor = String(obj.uf_emissor).toUpperCase().slice(0, 2);
+  console.log("PAYLOAD FINAL", obj);
 
   return obj;
 }
